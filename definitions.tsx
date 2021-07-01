@@ -17,6 +17,7 @@ export enum PierceType {
  *  HP - The amount of damage this chip can take before being deleted.
  *  PierceType - Specifies behaviour for attacking the chipDeck
  *  Recover - How much HP the user's Navi will recover.
+ *  In the future, chips will gain a wider variety of effects, as well as Speed & Accuracy ratings.
  */
 export interface Chip {
   name: string;
@@ -27,9 +28,9 @@ export interface Chip {
 }
 
 /** Navis are a special type of chip due to a few properties:
- *  1. When a NaviChip is deleted, the user loses the game.
- *  2. Unlike regular chips, NaviChips can be healed, so they include a maxHP field as well (healing cannot go beyond max HP).
- *  3. Navi
+ *  1. Unlike regular chips, NaviChips can be healed, so they include a maxHP field as well (healing cannot go beyond max HP).
+ *  2. When a NaviChip is deleted, the user loses the game. (this is not reflected in the class definition, however).
+ *  In the future, Navis will also have stats such as Evasion.
  */
 export interface Navi extends Chip {
   name: string;
@@ -102,7 +103,7 @@ export class PierceAll implements Chip {
   pierceType = PierceType.AllSlot;
 }
 
-
+/** A standard Navi featuring well-balanced stats.*/
 export class MegaMan implements Navi {
   name = "Mega Man";
   hp = 500;
@@ -110,6 +111,7 @@ export class MegaMan implements Navi {
   damage = 50;
 }
 
+/** A Navi with healing capabilities.*/
 export class Roll implements Navi {
     name = "Roll";
     hp = 450;
